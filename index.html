@@ -515,19 +515,28 @@
 
     /* WHATSAPP FLOAT */
     .whatsapp-float{
-      position:fixed;
-      right:22px;
-      bottom:22px;
-      z-index:999;
-      background:var(--green);
-      color:#07140c;
-      padding:14px 18px;
-      border-radius:999px;
-      font-weight:900;
-      box-shadow:0 15px 35px rgba(0,0,0,.25);
-      transition:.25s;
-    }
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:999;
+  width:58px;
+  height:58px;
+  background:#25D366;
+  color:white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+  text-decoration:none;
+  box-shadow:0 12px 30px rgba(0,0,0,.28);
+  transition:.25s;
+}
 
+.whatsapp-float:hover{
+  transform:translateY(-4px) scale(1.08);
+  box-shadow:0 16px 35px rgba(37,211,102,.35);
+}
     .whatsapp-float:hover{
       transform:translateY(-4px) scale(1.02);
     }
@@ -649,10 +658,10 @@
       <a href="#como-funciona">Cómo funciona</a>
       <a href="#negocios">Para quién</a>
       <a href="#faq">Preguntas</a>
-      <a class="nav-whatsapp"
+      <a class="whatsapp-float"
          href="https://wa.me/34668590737?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Nexora"
-         target="_blank">
-         WhatsApp
+         target="_blank"
+         aria-label="Contactar por WhatsApp">
       </a>
     </div>
   </nav>
