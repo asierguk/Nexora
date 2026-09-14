@@ -4,303 +4,633 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Nexora | Soluciones digitales para negocios</title>
-  <meta name="description" content="NFC para reseñas de Google, cartas digitales con QR y soluciones digitales para negocios locales.">
+  <title>Nexora | NFC, QR y soluciones digitales</title>
+  <meta name="description" content="Nexora ayuda a negocios locales con tarjetas NFC para reseñas de Google, cartas digitales con QR y soluciones digitales sencillas.">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --dark:#0b0d10;
+      --dark2:#13161b;
+      --light:#f5f7fa;
+      --text:#15171a;
+      --muted:#69707a;
+      --green:#25D366;
+      --blue:#5c7cff;
+      --card:#ffffff;
+      --border:#e8ebef;
     }
 
-    html {
-      scroll-behavior: smooth;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f7f8fa;
-      color: #171717;
-      line-height: 1.6;
+    html{
+      scroll-behavior:smooth;
     }
 
-    /* MENU */
-    nav {
-      background: #0b0b0c;
-      padding: 18px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--light);
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
     }
 
-    .logo {
-      color: white;
-      font-size: 25px;
-      font-weight: 800;
-      letter-spacing: 1px;
+    img{
+      max-width:100%;
+      display:block;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
+    a{
+      text-decoration:none;
     }
 
-    .nav-button {
-      background: #25D366;
-      padding: 10px 18px;
-      border-radius: 25px;
-      font-weight: bold;
+    section{
+      padding:90px 8%;
     }
 
-    /* PORTADA */
-    .hero {
-      min-height: 88vh;
+    /* HEADER */
+    header.topbar{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:1000;
+      background:rgba(11,13,16,.88);
+      backdrop-filter:blur(15px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    nav{
+      max-width:1300px;
+      margin:auto;
+      padding:17px 5%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .logo{
+      color:white;
+      font-size:25px;
+      font-weight:900;
+      letter-spacing:1.5px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:28px;
+      align-items:center;
+    }
+
+    .nav-links a{
+      color:#d8dbe0;
+      font-size:15px;
+      transition:.25s;
+    }
+
+    .nav-links a:hover{
+      color:white;
+    }
+
+    .nav-whatsapp{
+      background:var(--green);
+      color:#07140c !important;
+      padding:10px 17px;
+      border-radius:999px;
+      font-weight:800;
+    }
+
+    .menu-btn{
+      display:none;
+      background:none;
+      border:0;
+      color:white;
+      font-size:30px;
+      cursor:pointer;
+    }
+
+    /* HERO */
+    .hero{
+      min-height:100vh;
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:55px;
+      align-items:center;
+      padding:135px 8% 80px;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.92), rgba(0,0,0,.60)),
-        url("nfc-1.png");
-      background-size: cover;
-      background-position: center;
-      color: white;
-      display: flex;
-      align-items: center;
-      padding: 70px 8%;
+        radial-gradient(circle at 80% 20%, rgba(92,124,255,.20), transparent 30%),
+        linear-gradient(135deg,#08090b,#11151b);
+      color:white;
+      overflow:hidden;
     }
 
-    .hero-content {
-      max-width: 700px;
+    .hero-content{
+      max-width:700px;
     }
 
-    .mini {
-      color: #25D366;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 12px;
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+      padding:8px 13px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:700;
+      color:#cfd4dc;
+      margin-bottom:24px;
     }
 
-    .hero h1 {
-      font-size: clamp(44px, 7vw, 80px);
-      line-height: 1.03;
-      margin-bottom: 22px;
+    .dot{
+      width:8px;
+      height:8px;
+      background:var(--green);
+      border-radius:50%;
+      box-shadow:0 0 14px var(--green);
     }
 
-    .hero p {
-      font-size: 20px;
-      color: #e5e5e5;
-      max-width: 620px;
-      margin-bottom: 32px;
+    .hero h1{
+      font-size:clamp(48px,7vw,82px);
+      line-height:1;
+      letter-spacing:-3px;
+      margin-bottom:22px;
     }
 
-    .button {
-      display: inline-block;
-      background: #25D366;
-      color: #07140c;
-      text-decoration: none;
-      padding: 15px 26px;
-      border-radius: 30px;
-      font-weight: 800;
-      transition: .2s;
+    .hero h1 span{
+      background:linear-gradient(90deg,#ffffff,#8ea2ff);
+      -webkit-background-clip:text;
+      color:transparent;
     }
 
-    .button:hover {
-      transform: translateY(-2px);
+    .hero p{
+      font-size:19px;
+      color:#b8bec8;
+      max-width:620px;
+      margin-bottom:32px;
     }
 
-    /* SECCIONES */
-    section {
-      padding: 90px 8%;
+    .hero-buttons{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
     }
 
-    .section-title {
-      max-width: 750px;
-      margin-bottom: 45px;
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:14px 24px;
+      border-radius:999px;
+      font-weight:800;
+      transition:.25s;
     }
 
-    .section-title h2 {
-      font-size: clamp(34px, 5vw, 52px);
-      line-height: 1.1;
-      margin-bottom: 15px;
+    .btn:hover{
+      transform:translateY(-3px);
     }
 
-    .section-title p {
-      color: #666;
-      font-size: 18px;
+    .btn-primary{
+      background:var(--green);
+      color:#07140c;
+      box-shadow:0 12px 30px rgba(37,211,102,.18);
     }
 
-    /* SERVICIOS */
-    .services {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,.18);
+      color:white;
+      background:rgba(255,255,255,.05);
     }
 
-    .service {
-      background: white;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 12px 35px rgba(0,0,0,.08);
+    .hero-image{
+      position:relative;
     }
 
-    .service img {
-      width: 100%;
-      height: 360px;
-      object-fit: cover;
-      display: block;
+    .hero-image img{
+      width:100%;
+      border-radius:28px;
+      box-shadow:0 40px 90px rgba(0,0,0,.45);
+      animation:float 5s ease-in-out infinite;
     }
 
-    .service-text {
-      padding: 28px;
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-12px)}
     }
 
-    .service h3 {
-      font-size: 26px;
-      margin-bottom: 10px;
+    .mini-card{
+      position:absolute;
+      left:-30px;
+      bottom:25px;
+      background:white;
+      color:#121212;
+      padding:15px 18px;
+      border-radius:16px;
+      box-shadow:0 15px 40px rgba(0,0,0,.24);
+      font-weight:800;
+      animation:float 4s ease-in-out infinite .5s;
     }
 
-    .service p {
-      color: #626262;
+    /* TRUST STRIP */
+    .trust{
+      background:white;
+      border-bottom:1px solid var(--border);
+      padding:25px 8%;
     }
 
-    /* NFC BANNER */
-    .showcase {
-      background: #0b0b0c;
-      color: white;
+    .trust-grid{
+      max-width:1150px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+      text-align:center;
+      font-weight:800;
     }
 
-    .showcase-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
+    .trust-grid span{
+      color:var(--muted);
+      font-weight:500;
+      display:block;
+      font-size:14px;
+      margin-top:4px;
     }
 
-    .showcase img {
-      width: 100%;
-      border-radius: 24px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    /* COMMON */
+    .section-heading{
+      max-width:760px;
+      margin-bottom:46px;
     }
 
-    .showcase h2 {
-      font-size: clamp(36px, 5vw, 55px);
-      line-height: 1.1;
-      margin-bottom: 20px;
+    .section-heading small{
+      display:block;
+      color:var(--blue);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      margin-bottom:9px;
     }
 
-    .showcase p {
-      color: #c8c8c8;
-      font-size: 18px;
-      margin-bottom: 25px;
+    .section-heading h2{
+      font-size:clamp(36px,5vw,55px);
+      line-height:1.08;
+      margin-bottom:14px;
+      letter-spacing:-1.8px;
     }
 
-    /* PASOS */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
+    .section-heading p{
+      color:var(--muted);
+      font-size:18px;
     }
 
-    .step {
-      background: white;
-      padding: 35px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    /* SERVICES */
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
     }
 
-    .number {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: #111;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      margin-bottom: 20px;
+    .service-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 12px 35px rgba(0,0,0,.05);
+      transition:.3s;
     }
 
-    .step h3 {
-      margin-bottom: 8px;
+    .service-card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 22px 50px rgba(0,0,0,.09);
     }
 
-    .step p {
-      color: #666;
+    .service-card img{
+      width:100%;
+      height:280px;
+      object-fit:cover;
+      transition:.45s;
+    }
+
+    .service-card:hover img{
+      transform:scale(1.035);
+    }
+
+    .service-body{
+      padding:26px;
+    }
+
+    .service-body h3{
+      font-size:24px;
+      margin-bottom:10px;
+    }
+
+    .service-body p{
+      color:var(--muted);
+    }
+
+    .service-icon{
+      width:45px;
+      height:45px;
+      border-radius:12px;
+      background:#edf0ff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:22px;
+      margin-bottom:18px;
+    }
+
+    /* DEMO */
+    .dark-section{
+      background:var(--dark);
+      color:white;
+    }
+
+    .demo-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .demo-grid img{
+      border-radius:26px;
+      box-shadow:0 25px 60px rgba(0,0,0,.4);
+    }
+
+    .demo-copy h2{
+      font-size:clamp(38px,5vw,58px);
+      line-height:1.05;
+      letter-spacing:-2px;
+      margin-bottom:20px;
+    }
+
+    .demo-copy > p{
+      color:#b5bbc4;
+      font-size:18px;
+      margin-bottom:28px;
+    }
+
+    .timeline{
+      display:grid;
+      gap:16px;
+      margin-bottom:30px;
+    }
+
+    .timeline-item{
+      display:flex;
+      gap:15px;
+      align-items:flex-start;
+      padding:17px;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.04);
+      border-radius:16px;
+      transition:.25s;
+    }
+
+    .timeline-item:hover{
+      background:rgba(255,255,255,.08);
+      transform:translateX(5px);
+    }
+
+    .step-num{
+      min-width:35px;
+      height:35px;
+      border-radius:50%;
+      background:var(--green);
+      color:#07140c;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+    }
+
+    .timeline-item p{
+      color:#b9bec6;
+      font-size:15px;
+    }
+
+    /* BUSINESS TYPES */
+    .types{
+      display:flex;
+      flex-wrap:wrap;
+      gap:13px;
+    }
+
+    .type-pill{
+      background:white;
+      border:1px solid var(--border);
+      padding:14px 20px;
+      border-radius:999px;
+      font-weight:800;
+      transition:.25s;
+    }
+
+    .type-pill:hover{
+      border-color:#b9c3ff;
+      transform:translateY(-2px);
+    }
+
+    /* FAQ */
+    .faq-wrap{
+      max-width:850px;
+    }
+
+    .faq{
+      background:white;
+      border:1px solid var(--border);
+      border-radius:18px;
+      margin-bottom:12px;
+      overflow:hidden;
+    }
+
+    .faq-question{
+      width:100%;
+      border:0;
+      background:white;
+      padding:21px 22px;
+      text-align:left;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      cursor:pointer;
+      font-size:17px;
+      font-weight:800;
+    }
+
+    .faq-question span{
+      font-size:24px;
+      transition:.3s;
+    }
+
+    .faq.active .faq-question span{
+      transform:rotate(45deg);
+    }
+
+    .faq-answer{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .35s ease;
+    }
+
+    .faq-answer p{
+      padding:0 22px 21px;
+      color:var(--muted);
     }
 
     /* CTA */
-    .cta {
-      text-align: center;
-      background: #eceff1;
+    .cta{
+      margin:0 8% 80px;
+      border-radius:30px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(92,124,255,.35), transparent 30%),
+        var(--dark2);
+      color:white;
+      padding:65px;
+      text-align:center;
     }
 
-    .cta h2 {
-      font-size: clamp(36px, 5vw, 55px);
-      margin-bottom: 15px;
+    .cta h2{
+      font-size:clamp(38px,5vw,58px);
+      line-height:1.05;
+      margin-bottom:15px;
     }
 
-    .cta p {
-      color: #666;
-      font-size: 18px;
-      margin-bottom: 28px;
+    .cta p{
+      color:#b9bec7;
+      font-size:18px;
+      margin-bottom:28px;
     }
 
-    /* WHATSAPP FLOTANTE */
-    .whatsapp {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      background: #25D366;
-      color: #07140c;
-      text-decoration: none;
-      padding: 14px 19px;
-      border-radius: 50px;
-      font-weight: bold;
-      box-shadow: 0 8px 25px rgba(0,0,0,.25);
-      z-index: 200;
+    footer{
+      padding:35px 8%;
+      text-align:center;
+      background:#090a0c;
+      color:#8d929a;
     }
 
-    footer {
-      background: #0b0b0c;
-      color: #999;
-      padding: 35px 8%;
-      text-align: center;
+    /* WHATSAPP FLOAT */
+    .whatsapp-float{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      z-index:999;
+      background:var(--green);
+      color:#07140c;
+      padding:14px 18px;
+      border-radius:999px;
+      font-weight:900;
+      box-shadow:0 15px 35px rgba(0,0,0,.25);
+      transition:.25s;
     }
 
-    /* MOVIL */
-    @media(max-width: 800px) {
-      .hero {
-        min-height: 80vh;
-        padding: 70px 6%;
+    .whatsapp-float:hover{
+      transform:translateY(-4px) scale(1.02);
+    }
+
+    /* SCROLL ANIMATION */
+    .reveal{
+      opacity:0;
+      transform:translateY(35px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* MOBILE */
+    @media(max-width:900px){
+      section{
+        padding:70px 6%;
       }
 
-      .hero p {
-        font-size: 17px;
+      .menu-btn{
+        display:block;
       }
 
-      section {
-        padding: 65px 6%;
+      .nav-links{
+        display:none;
+        position:absolute;
+        top:70px;
+        left:4%;
+        right:4%;
+        background:#111419;
+        border:1px solid rgba(255,255,255,.1);
+        border-radius:18px;
+        flex-direction:column;
+        padding:22px;
+        align-items:stretch;
+        box-shadow:0 20px 40px rgba(0,0,0,.3);
       }
 
-      .services,
-      .showcase-grid,
-      .steps {
-        grid-template-columns: 1fr;
+      .nav-links.open{
+        display:flex;
       }
 
-      .service img {
-        height: 280px;
+      .hero{
+        grid-template-columns:1fr;
+        padding:125px 6% 70px;
+        min-height:auto;
       }
 
-      .showcase-grid {
-        gap: 35px;
+      .hero h1{
+        letter-spacing:-2px;
       }
 
-      .nav-button {
-        font-size: 13px;
+      .hero-image{
+        margin-top:10px;
+      }
+
+      .mini-card{
+        left:12px;
+        bottom:12px;
+        font-size:13px;
+      }
+
+      .trust-grid{
+        grid-template-columns:1fr;
+        gap:22px;
+      }
+
+      .services-grid,
+      .demo-grid{
+        grid-template-columns:1fr;
+      }
+
+      .service-card img{
+        height:260px;
+      }
+
+      .cta{
+        margin:0 5% 65px;
+        padding:50px 25px;
+      }
+    }
+
+    @media(max-width:520px){
+      .hero-buttons{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .service-card img{
+        height:230px;
+      }
+
+      .whatsapp-float{
+        right:14px;
+        bottom:14px;
+        padding:12px 15px;
+        font-size:14px;
       }
     }
   </style>
@@ -308,191 +638,363 @@
 
 <body>
 
+<header class="topbar">
   <nav>
-    <div class="logo">NEXORA</div>
+    <a href="#" class="logo">NEXORA</a>
 
-    <a class="nav-button"
-       href="https://wa.me/34668590737"
-       target="_blank">
-       WhatsApp
-    </a>
-  </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
 
-
-  <header class="hero">
-    <div class="hero-content">
-
-      <div class="mini">Soluciones digitales para negocios</div>
-
-      <h1>Haz que tu negocio destaque.</h1>
-
-      <p>
-        Facilita las reseñas de tus clientes, digitaliza tu carta
-        y mejora la experiencia de tu negocio con soluciones sencillas.
-      </p>
-
-      <a class="button"
+    <div class="nav-links" id="navLinks">
+      <a href="#servicios">Servicios</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#negocios">Para quién</a>
+      <a href="#faq">Preguntas</a>
+      <a class="nav-whatsapp"
          href="https://wa.me/34668590737?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Nexora"
          target="_blank">
-         Hablar por WhatsApp
+         WhatsApp
       </a>
-
     </div>
-  </header>
+  </nav>
+</header>
 
+<main>
 
-  <section>
+  <section class="hero">
 
-    <div class="section-title">
-      <h2>Soluciones simples que funcionan</h2>
+    <div class="hero-content reveal">
+      <div class="eyebrow">
+        <span class="dot"></span>
+        Soluciones digitales para negocios locales
+      </div>
+
+      <h1>
+        Digitaliza la experiencia de <span>tus clientes.</span>
+      </h1>
+
       <p>
-        Tecnología sencilla para facilitar la interacción entre
-        tus clientes y tu negocio.
+        Reseñas Google con NFC, cartas digitales con QR y soluciones sencillas
+        para hacer más fácil la interacción entre tus clientes y tu negocio.
       </p>
+
+      <div class="hero-buttons">
+        <a class="btn btn-primary"
+           href="https://wa.me/34668590737?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Nexora"
+           target="_blank">
+          Hablar por WhatsApp
+        </a>
+
+        <a class="btn btn-secondary" href="#servicios">
+          Ver soluciones ↓
+        </a>
+      </div>
     </div>
 
-
-    <div class="services">
-
-      <div class="service">
-        <img src="nfc-2.png"
-             alt="Tarjeta NFC para reseñas de Google">
-
-        <div class="service-text">
-          <h3>Reseñas Google con NFC</h3>
-          <p>
-            El cliente acerca su móvil a la tarjeta y accede
-            directamente a tu página para dejar una reseña.
-            Sin buscar tu negocio manualmente.
-          </p>
-        </div>
-      </div>
-
-
-      <div class="service">
-        <img src="nfc-3.png"
-             alt="Tarjetas NFC para negocios">
-
-        <div class="service-text">
-          <h3>Preparadas para tu negocio</h3>
-          <p>
-            Configuramos las tarjetas específicamente para tu
-            ficha de Google y las entregamos listas para utilizar.
-          </p>
-        </div>
-      </div>
-
+    <div class="hero-image reveal">
+      <img src="nfc-1.png" alt="Tarjeta NFC para reseñas de Google">
+      <div class="mini-card">⚡ Un toque. Menos pasos.</div>
     </div>
 
   </section>
 
-
-  <section class="showcase">
-
-    <div class="showcase-grid">
-
-      <img src="nfc-1.png"
-           alt="Sistema NFC de reseñas Google">
+  <div class="trust">
+    <div class="trust-grid">
+      <div>
+        Sin aplicaciones
+        <span>El cliente utiliza directamente su móvil</span>
+      </div>
 
       <div>
-        <div class="mini">NFC + Google</div>
+        Configurado para ti
+        <span>Lo dejamos preparado para tu negocio</span>
+      </div>
+
+      <div>
+        Fácil de utilizar
+        <span>Una solución sencilla para el día a día</span>
+      </div>
+    </div>
+  </div>
+
+
+  <section id="servicios">
+
+    <div class="section-heading reveal">
+      <small>Servicios</small>
+      <h2>Menos pasos para tus clientes.</h2>
+      <p>
+        Soluciones sencillas, visuales y pensadas para negocios que quieren
+        mejorar su presencia digital sin complicaciones.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <article class="service-card reveal">
+        <img src="nfc-2.png" alt="Tarjeta NFC para reseñas de Google">
+
+        <div class="service-body">
+          <h3>Reseñas Google con NFC</h3>
+          <p>
+            El cliente acerca su teléfono a la tarjeta y accede directamente
+            a la pantalla para dejar una reseña en Google.
+          </p>
+        </div>
+      </article>
+
+      <article class="service-card reveal">
+        <img src="nfc-3.png" alt="Tarjetas NFC personalizadas para negocios">
+
+        <div class="service-body">
+          <h3>Configurado para tu negocio</h3>
+          <p>
+            Cada tarjeta se prepara con la ficha de Google correspondiente
+            y se entrega lista para utilizar.
+          </p>
+        </div>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-body">
+          <div class="service-icon">▦</div>
+          <h3>Cartas digitales con QR</h3>
+          <p>
+            Creamos una carta digital adaptada a móvil y un código QR para que
+            tus clientes puedan consultarla desde la mesa.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+
+  <section class="dark-section" id="como-funciona">
+
+    <div class="demo-grid">
+
+      <div class="reveal">
+        <img src="nfc-3.png" alt="Funcionamiento de tarjeta NFC Google">
+      </div>
+
+      <div class="demo-copy reveal">
+        <small style="color:#7f97ff;font-weight:900;text-transform:uppercase;letter-spacing:1.5px;">
+          Cómo funciona
+        </small>
 
         <h2>Una reseña a un toque de distancia.</h2>
 
         <p>
-          Coloca las tarjetas en caja, recepción, mostrador o
-          cualquier punto donde tus clientes terminen su experiencia.
+          Reduce los pasos que tiene que seguir el cliente cuando quiere
+          valorar tu negocio.
         </p>
 
-        <p>
-          Cuando un cliente quiera valorar tu negocio, solo tendrá
-          que acercar su teléfono.
-        </p>
+        <div class="timeline">
 
-        <a class="button"
+          <div class="timeline-item">
+            <div class="step-num">1</div>
+            <div>
+              <strong>Acerca el móvil</strong>
+              <p>El cliente acerca su teléfono a la tarjeta NFC.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="step-num">2</div>
+            <div>
+              <strong>Se abre Google</strong>
+              <p>Accede directamente a la página de reseña de tu negocio.</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="step-num">3</div>
+            <div>
+              <strong>Deja su valoración</strong>
+              <p>Puede seleccionar estrellas y escribir su experiencia.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="btn btn-primary"
            href="https://wa.me/34668590737?text=Hola%2C%20me%20interesan%20las%20tarjetas%20NFC"
            target="_blank">
-           Quiero información
+          Quiero información
         </a>
       </div>
 
     </div>
-
   </section>
 
 
-  <section>
+  <section id="negocios">
 
-    <div class="section-title">
-      <h2>También digitalizamos tu carta</h2>
+    <div class="section-heading reveal">
+      <small>Para negocios locales</small>
+      <h2>Una solución adaptable a muchos sectores.</h2>
       <p>
-        Creamos cartas digitales accesibles mediante código QR,
-        adaptadas a móviles y personalizadas para tu negocio.
+        Especialmente útil en negocios donde existe contacto directo con
+        clientes y una buena reputación online marca la diferencia.
       </p>
     </div>
 
-    <div class="steps">
+    <div class="types reveal">
+      <div class="type-pill">🍽️ Restaurantes</div>
+      <div class="type-pill">☕ Cafeterías</div>
+      <div class="type-pill">✂️ Barberías</div>
+      <div class="type-pill">💇 Peluquerías</div>
+      <div class="type-pill">✨ Estética</div>
+      <div class="type-pill">🦷 Clínicas</div>
+      <div class="type-pill">🔧 Talleres</div>
+      <div class="type-pill">🏪 Comercios</div>
+    </div>
+  </section>
 
-      <div class="step">
-        <div class="number">1</div>
-        <h3>Diseñamos</h3>
-        <p>
-          Preparamos una carta digital clara y adaptada
-          a la imagen de tu establecimiento.
-        </p>
+
+  <section id="faq">
+
+    <div class="section-heading reveal">
+      <small>Preguntas frecuentes</small>
+      <h2>Todo claro antes de empezar.</h2>
+    </div>
+
+    <div class="faq-wrap reveal">
+
+      <div class="faq">
+        <button class="faq-question">
+          ¿El cliente necesita instalar una app?
+          <span>+</span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            No. En teléfonos compatibles, basta con acercar el móvil a la
+            tarjeta NFC para abrir el enlace.
+          </p>
+        </div>
       </div>
 
-      <div class="step">
-        <div class="number">2</div>
-        <h3>Creamos tu QR</h3>
-        <p>
-          Tus clientes escanean el código desde la mesa
-          y acceden directamente a la carta.
-        </p>
+      <div class="faq">
+        <button class="faq-question">
+          ¿Las tarjetas vienen configuradas?
+          <span>+</span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Sí. Las preparamos para la ficha de Google de tu negocio y
+            comprobamos su funcionamiento.
+          </p>
+        </div>
       </div>
 
-      <div class="step">
-        <div class="number">3</div>
-        <h3>Lo dejamos listo</h3>
-        <p>
-          Configuramos y comprobamos todo para que puedas
-          empezar a utilizarlo.
-        </p>
+      <div class="faq">
+        <button class="faq-question">
+          ¿El QR necesita una aplicación?
+          <span>+</span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            No. El cliente puede escanearlo directamente con la cámara de su
+            teléfono en la mayoría de móviles actuales.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <button class="faq-question">
+          ¿Trabajáis solo con restaurantes?
+          <span>+</span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            No. Las soluciones pueden utilizarse en restaurantes, barberías,
+            peluquerías, clínicas, centros de estética, talleres y otros
+            negocios locales.
+          </p>
+        </div>
       </div>
 
     </div>
-
   </section>
 
 
-  <section class="cta">
-
-    <h2>¿Quieres digitalizar tu negocio?</h2>
+  <section class="cta reveal">
+    <h2>¿Quieres mejorar la experiencia de tus clientes?</h2>
 
     <p>
-      Cuéntanos qué necesitas y buscamos una solución sencilla
-      adaptada a tu establecimiento.
+      Cuéntanos qué tipo de negocio tienes y qué necesitas.
+      Servicio en Sant Boi de Llobregat y alrededores.
     </p>
 
-    <a class="button"
-       href="https://wa.me/34668590737?text=Hola%2C%20quiero%20informaci%C3%B3n"
+    <a class="btn btn-primary"
+       href="https://wa.me/34668590737?text=Hola%2C%20tengo%20un%20negocio%20y%20quiero%20informaci%C3%B3n%20sobre%20Nexora"
        target="_blank">
-       Contactar por WhatsApp
+      Contactar por WhatsApp
     </a>
-
   </section>
 
-
-  <footer>
-    © 2026 Nexora · Soluciones digitales para negocios
-  </footer>
+</main>
 
 
-  <a class="whatsapp"
-     href="https://wa.me/34668590737"
-     target="_blank">
-     WhatsApp
-  </a>
+<footer>
+  © 2026 Nexora · NFC · Cartas QR · Soluciones digitales para negocios
+</footer>
+
+
+<a class="whatsapp-float"
+   href="https://wa.me/34668590737?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Nexora"
+   target="_blank">
+   WhatsApp
+</a>
+
+
+<script>
+  // MENÚ MÓVIL
+  const menuBtn = document.getElementById("menuBtn");
+  const navLinks = document.getElementById("navLinks");
+
+  menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+  });
+
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+    });
+  });
+
+  // FAQ DESPLEGABLE
+  document.querySelectorAll(".faq-question").forEach(button => {
+    button.addEventListener("click", () => {
+      const faq = button.parentElement;
+      const answer = faq.querySelector(".faq-answer");
+
+      faq.classList.toggle("active");
+
+      if (faq.classList.contains("active")) {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      } else {
+        answer.style.maxHeight = null;
+      }
+    });
+  });
+
+  // ANIMACIONES AL HACER SCROLL
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12
+  });
+
+  document.querySelectorAll(".reveal").forEach(el => {
+    observer.observe(el);
+  });
+</script>
 
 </body>
 </html>
