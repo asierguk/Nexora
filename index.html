@@ -1149,7 +1149,7 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   const mensaje = document.getElementById('reviewMensaje');
 
   const { error } = await supabaseClient
-    .from('resenas')
+    .from('reseñas')
     .insert({
       nombre,
       negocio,
