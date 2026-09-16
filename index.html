@@ -1167,6 +1167,36 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   mensaje.textContent = '¡Gracias! ⭐ Tu reseña está pendiente de aprobación.';
   document.getElementById('reviewForm').reset();
 });
+    async function cargarResenas() {
+  const { data, error } = await supabaseClient
+    .from('Reseñas')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  const lista = document.getElementById('listaResenas');
+  lista.innerHTML = '';
+
+  data.forEach(resena => {
+    const card = document.createElement('div');
+    card.className = 'review-card';
+
+    card.innerHTML = `
+      <div class="stars">${'⭐'.repeat(resena.estrellas)}</div>
+      <h3>${resena.nombre}</h3>
+      <small>${resena.negocio || ''}</small>
+      <p>${resena.comentario}</p>
+    `;
+
+    lista.appendChild(card);
+  });
+}
+
+cargarResenas();
 </script>
 </body>
 </html>
