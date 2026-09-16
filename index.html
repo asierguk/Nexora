@@ -663,6 +663,36 @@
       }
     }
     /* RESEÑAS NEXORA */
+    .reviews-summary{
+  max-width:650px;
+  margin:30px auto;
+  padding:25px;
+  display:flex;
+  justify-content:center;
+  gap:50px;
+  align-items:center;
+  background:#151515;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:18px;
+}
+
+.reviews-number,
+.reviews-rating{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  color:#fff;
+}
+
+.reviews-number strong,
+#mediaEstrellas{
+  font-size:38px;
+  font-weight:800;
+}
+
+.reviews-summary span{
+  color:#fff;
+}
 .reviews-section{
   max-width:900px;
   margin:80px auto;
@@ -1075,7 +1105,17 @@
   </form>
 
   <p id="reviewMensaje"></p>
+<div class="reviews-summary">
+  <div class="reviews-number">
+    <strong id="totalResenas">0</strong>
+    <span>valoraciones recibidas</span>
+  </div>
 
+  <div class="reviews-rating">
+    <span id="mediaEstrellas">0,0</span>
+    <span>⭐ de media</span>
+  </div>
+</div>
   <div id="listaResenas"></div>
 </section>
 </main>
@@ -1181,7 +1221,14 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   const lista = document.getElementById('listaResenas');
   lista.innerHTML = '';
+const total = data.length;
 
+const media = total > 0
+  ? data.reduce((suma, resena) => suma + Number(resena.estrellas), 0) / total
+  : 0;
+
+document.getElementById('totalResenas').textContent = total;
+document.getElementById('mediaEstrellas').textContent = media.toFixed(1).replace('.', ',');
   data.forEach(resena => {
     const card = document.createElement('div');
     card.className = 'review-card';
